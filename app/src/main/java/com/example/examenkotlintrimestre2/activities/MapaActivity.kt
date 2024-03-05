@@ -3,6 +3,7 @@ package com.example.examenkotlintrimestre2.activities
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import com.example.examenkotlintrimestre2.R
 import com.example.examenkotlintrimestre2.databinding.ActivityMapaBinding
 import org.osmdroid.config.Configuration
@@ -11,6 +12,7 @@ import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.ItemizedIconOverlay
 import org.osmdroid.views.overlay.ItemizedOverlayWithFocus
+import org.osmdroid.views.overlay.Marker
 import org.osmdroid.views.overlay.OverlayItem
 
 class MapaActivity : AppCompatActivity() {
@@ -32,7 +34,7 @@ class MapaActivity : AppCompatActivity() {
         map.setTileSource(TileSourceFactory.MAPNIK)
         map.setMultiTouchControls(true)
         val mapController = map.controller
-        mapController.setZoom(9.5)
+        mapController.setZoom(12.5)
 
 
         val items: ArrayList<OverlayItem> = ArrayList()
@@ -71,6 +73,7 @@ class MapaActivity : AppCompatActivity() {
         mOverlay.setFocusItemsOnTap(true)
         map.getOverlays().add(mOverlay)
         mapController.setCenter(GeoPoint(cesurLatitud, cesurLongitud))
+
     }
 
     public override fun onResume() {
