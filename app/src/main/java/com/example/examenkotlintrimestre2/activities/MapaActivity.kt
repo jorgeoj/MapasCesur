@@ -28,7 +28,10 @@ class MapaActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val cesurLatitud = intent.getDoubleExtra("latitud", 0.0)
-        val  cesurLongitud = intent.getDoubleExtra("longitud", 0.0)
+        val cesurLongitud = intent.getDoubleExtra("longitud", 0.0)
+        val nombre = intent.getStringExtra("nombre")
+        val direccion = intent.getStringExtra("calle")
+        val ciudad = intent.getStringExtra("ciudad")
 
         map = binding.map
         map.setTileSource(TileSourceFactory.MAPNIK)
@@ -71,9 +74,17 @@ class MapaActivity : AppCompatActivity() {
                 }, applicationContext
             )
         mOverlay.setFocusItemsOnTap(true)
-        map.getOverlays().add(mOverlay)
-        mapController.setCenter(GeoPoint(cesurLatitud, cesurLongitud))
+        map.overlays.add(mOverlay)
 
+        // Añadir marcador personalizado
+        val punto = GeoPoint(cesurLatitud, cesurLongitud)
+        val startMarker = Marker(map)
+        startMarker.position = punto
+        startMarker.icon = ContextCompat.getDrawable(this, R.drawable.cesur2)
+        startMarker.title = "Cesur "+nombre + "\n" + direccion + "\n" + ciudad
+        map.overlays.add(startMarker)
+
+        mapController.setCenter(punto)
     }
 
     public override fun onResume() {

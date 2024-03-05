@@ -51,6 +51,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun handleItemClick(cesur: Cesur, adapter: CesurAdapter) {
         val intent = Intent(this, MapaActivity::class.java)
+        intent.putExtra("nombre", cesur.nombreCentro)
+        intent.putExtra("calle", cesur.calle)
+        intent.putExtra("ciudad", cesur.ciudad)
         intent.putExtra("latitud", cesur.latitud)
         intent.putExtra("longitud", cesur.longitud)
         intentLaunch.launch(intent)
