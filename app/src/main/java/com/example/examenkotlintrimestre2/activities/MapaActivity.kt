@@ -78,6 +78,13 @@ class MapaActivity : AppCompatActivity() {
 
         // Añadir marcador personalizado
         val punto = GeoPoint(cesurLatitud, cesurLongitud)
+
+        val overlayToRemove = items.find { it.point == punto }
+        // Eliminar el OverlayItem específico de la capa mOverlay
+        overlayToRemove?.let {
+            mOverlay.removeItem(it)
+        }
+
         val startMarker = Marker(map)
         startMarker.position = punto
         startMarker.icon = ContextCompat.getDrawable(this, R.drawable.cesur2)
